@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.urls import reverse_lazy
 from .models import *
 # Create your views here.
 
@@ -21,3 +22,14 @@ def product(request):
 
 def customers(request):
     return render(request,'accounts/customer.html')
+
+
+class CreateCustomer(CreateView):
+    model = Customer
+    fields = ['name', 'phone', 'email']
+    success_url = reverse_lazy('customer')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CreateCustomer, self).form_valid(form)
+

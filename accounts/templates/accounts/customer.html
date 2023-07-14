@@ -18,8 +18,9 @@
         <div class="card card-body">
            <h5>Contact Information</h5>
            <hr>
-           <p>E-mail:{{orders.customer}}</p>
-           <p>Phone:</p>
+    
+           <p>E-mail: {{customer.email}}</p>
+           <p>Phone:  {{customer.name}}</p>
         </div>
     </div>
 
@@ -27,7 +28,7 @@
         <div class="card card-body">
            <h5>Total orders</h5>
            <hr>
-           <h1 style="text-align: center; padding: 10px;"></h1>
+        <h1 style="text-align: center; padding: 10px;">{{orders}}</h1>
         </div>
     </div>
 </div>
@@ -54,6 +55,10 @@
                     <th>Status</th>
                     <th>Update</th>
                     <th>Remove</th>
+                </tr>
+
+                <tr>
+                    <td>{{order.product}}</td>
                 </tr>
             </table>
         </div>

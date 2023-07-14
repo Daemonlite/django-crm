@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 from .models import *
+from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 def home(request):
@@ -46,4 +47,13 @@ class CreateOrder(CreateView):
 def customer_orders(request, customer_id):
     orders = Order.objects.filter(customer_id=customer_id)
     context = {'orders': orders}
-    return render(request, 'customer.html', context)
+    return render(request, 'accounts/customer.html', context)
+
+
+def delete_order(order_id):
+    try:
+        order = Order.objects.get(id=order_id)
+        order.delete()
+        return True
+    except ObjectDoesNotExist:
+        return False

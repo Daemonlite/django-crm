@@ -1,7 +1,6 @@
 {% extends 'accounts/main.html' %}
 
-
-{% block content%}
+{% block content %}
 
 <br>
 
@@ -10,18 +9,17 @@
         <div class="card card-body">
             <h5>Customer:</h5>
             <hr>
-            <a href="" class="btn btn-outline-info btn-sm btn-block"> Update Customer</a>
+            <a href="" class="btn btn-outline-info btn-sm btn-block">Update Customer</a>
             <br>
-            <a href="" class="btn btn-outline-danger btn-sm btn-block"> delete Customer</a>
-
+            <a href="" class="btn btn-outline-danger btn-sm btn-block">Delete Customer</a>
         </div>
     </div>
     <div class="col-md">
         <div class="card card-body">
            <h5>Contact Information</h5>
            <hr>
-           <p>E-mail:</p>
-           <p>phone:</p>
+           <p>E-mail:{{orders.customer}}</p>
+           <p>Phone:</p>
         </div>
     </div>
 
@@ -29,7 +27,7 @@
         <div class="card card-body">
            <h5>Total orders</h5>
            <hr>
-           <h1 style="text-align: center;padding: 10px;">{{orders}}</h1>
+           <h1 style="text-align: center; padding: 10px;"></h1>
         </div>
     </div>
 </div>
@@ -39,7 +37,7 @@
    <div class="col">
     <div class="card card-body">
      <form action="" method="get">
-        <div class="btn btn-primary " type="submit">Search</div>
+        <div class="btn btn-primary" type="submit">Search</div>
      </form>
     </div>
    </div>

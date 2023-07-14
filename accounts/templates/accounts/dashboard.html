@@ -1,7 +1,6 @@
 {% extends 'accounts/main.html' %}
 
-
-{% block content%}
+{% block content %}
 
 {% include 'accounts/status.html' %}
 <br>
@@ -11,55 +10,48 @@
         <h5>CUSTOMERS:</h5>
         <hr>
         <div class="card card-body">
-            <a href="{% url 'create-customer'  %}" class="btn btn-primary btn-sm btn-block">create customer</a>
+            <a href="{% url 'create-customer' %}" class="btn btn-primary btn-sm btn-block">Create customer</a>
             <table class="table table-sm">
                 <tr>
                     <th>Customer</th>
-                    <th>phone</th>
+                    <th>Phone</th>
                 </tr>
                 
                 {% for customer in customers %}
-
-                <tr>
-                    <td>{{customer.name}}</td>
-                    <td>{{customer.phone}}</td>
-                </tr>
-
+                    <tr>
+                        <td><a href="{% url 'customer_orders' customer.id %}">{{ customer.name }}</a></td>
+                        <td>{{ customer.phone }}</td>
+                    </tr>
                 {% endfor %}
             </table>
         </div>
- 
     </div>
 
     <div class="col-md-7">
         <h5>LAST 5 ORDERS</h5>
         <hr>
         <div class="card card-body">
-            <!-- <a href="" class="btn btn-primary btn-sm btn-block">create order</a> -->
+            <a href="{% url 'create-order' %}" class="btn btn-primary btn-sm btn-block">Create order</a>
             <table class="table table-sm">
                 <tr>
                     <th>Product</th>
                     <th>Date ordered</th>
-                    <th>status</th>
-                    <th>update</th>
-                    <th>remove</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Remove</th>
                 </tr>
-                <a href="{% url 'create-order'  %}" class="btn btn-primary btn-sm btn-block">create order</a>
+                
                 {% for order in orders %}
-                <tr>
-                  
-                    <td>{{order.product}}</td>
-                    <td>{{order.date_created}}</td>
-                    <td>{{order.status}}</td>
-                    <td><a href="" class="btn btn-outline-info btn-sm">Update</a></td>
-                    <td><a href="" class="btn btn-outline-danger btn-sm">Delete</a></td>
-                </tr>
-
+                    <tr>
+                        <td>{{ order.product }}</td>
+                        <td>{{ order.date_created }}</td>
+                        <td>{{ order.status }}</td>
+                        <td><a href="" class="btn btn-outline-info btn-sm">Update</a></td>
+                        <td><a href="" class="btn btn-outline-danger btn-sm">Delete</a></td>
+                    </tr>
                 {% endfor %}
-
             </table>
         </div>
-    
     </div>
 </div>
 

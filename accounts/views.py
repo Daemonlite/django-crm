@@ -32,4 +32,18 @@ class CreateCustomer(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(CreateCustomer, self).form_valid(form)
+    
+class CreateOrder(CreateView):
+    model = Order
+    fields = '__all__'
+    success_url = reverse_lazy('customer')
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CreateOrder, self).form_valid(form)
+    
+
+def customer_orders(request, customer_id):
+    orders = Order.objects.filter(customer_id=customer_id)
+    context = {'orders': orders}
+    return render(request, 'customer.html', context)

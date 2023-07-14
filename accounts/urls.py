@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import home,customers,CreateCustomer,product
+from .views import home,customers,CreateCustomer,product,CreateOrder
 
 urlpatterns = [
   path('',home,name='home'),
   path('customers/',customers,name='customer'),
   path('products/',product,name='products'),
-  path('create-customer/',CreateCustomer.as_view(),name='create-customer')
+  path('create-customer/',CreateCustomer.as_view(),name='create-customer'),
+  path('create-order/',CreateOrder.as_view(),name='create-order')
 ]

@@ -44,8 +44,8 @@
                     <th>update</th>
                     <th>remove</th>
                 </tr>
+                <a href="{% url 'create-order'  %}" class="btn btn-primary btn-sm btn-block">create order</a>
                 {% for order in orders %}
-
                 <tr>
                   
                     <td>{{order.product}}</td>

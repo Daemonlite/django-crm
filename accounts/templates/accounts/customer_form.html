@@ -1,7 +1,6 @@
 {% extends 'accounts/main.html' %}
-{% load static %}
 {% block content %}
-
+{% load static %}
 
 <div class="header-bar">
     <a href="{% url 'home' %}">&#8592; Back</a>
@@ -21,7 +20,7 @@
         <label>{{form.phone.label}}</label>
         {{form.phone}}
         <br>
-        <input style="margin-top:10px ;" id="button" type="submit" value="create-customer">
+        <input style="margin-top:10px ;" class="btn btn-primary" type="submit" value="create-customer">
     </form>
     
 </div>

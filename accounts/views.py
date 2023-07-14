@@ -46,7 +46,6 @@ class CreateOrder(CreateView):
 
 def customer_orders(request, customer_id):
     orders = Order.objects.filter(customer_id=customer_id).count()
-    # order = Order.objects.filter(customer=customer)
     customer = Customer.objects.get(id=customer_id)
     context = {'orders': orders,'customer':customer,}
     return render(request, 'accounts/customer.html', context)

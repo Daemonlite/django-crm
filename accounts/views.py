@@ -36,7 +36,7 @@ class CreateProduct(CreateView):
 class CreateCustomer(CreateView):
     model = Customer
     fields = ['name', 'phone', 'email']
-    success_url = reverse_lazy('customer')
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         form.instance.user = self.request.user

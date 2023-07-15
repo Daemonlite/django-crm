@@ -3,7 +3,7 @@ from django.shortcuts import render,get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 from .models import *
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
@@ -62,7 +62,7 @@ def delete_order(request, order_id):
     try:
         order = Order.objects.get(id=order_id)
         order.delete()
-        return HttpResponse("Order deleted successfully.")
+        return HttpResponseRedirect('/')
     except Order.DoesNotExist:
         return HttpResponse("Order does not exist.")
     
@@ -70,6 +70,6 @@ def delete_customer(request, customer_id):
     try:
         customer = Customer.objects.get(id=customer_id)
         customer.delete()
-        return HttpResponse("customer deleted successfully.")
+        return  HttpResponseRedirect('/')
     except customer.DoesNotExist:
         return HttpResponse("customer does not exist.")

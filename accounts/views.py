@@ -66,6 +66,7 @@ def delete_order(request, order_id):
     except Order.DoesNotExist:
         return HttpResponse("Order does not exist.")
     
+    
 def delete_customer(request, customer_id):
     try:
         customer = Customer.objects.get(id=customer_id)
@@ -73,3 +74,13 @@ def delete_customer(request, customer_id):
         return  HttpResponseRedirect('/')
     except customer.DoesNotExist:
         return HttpResponse("customer does not exist.")
+    
+
+def delete_product(request, product_id):
+    try:
+        product = Product.objects.get(id=product_id)
+        product.delete()
+        return  HttpResponseRedirect('/products')
+    except product.DoesNotExist:
+        return HttpResponse("product does not exist.")
+    

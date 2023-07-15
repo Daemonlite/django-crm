@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.forms.models import BaseModelForm
+from django.shortcuts import render,get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 from .models import *
+from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
@@ -21,9 +23,15 @@ def product(request):
 
     return render(request,'accounts/products.html',{'products':products})
 
-def customers(request):
-    return render(request,'accounts/customer.html')
 
+class CreateProduct(CreateView):
+    model = Product
+    fields = '__all__'
+    success_url = reverse_lazy('products')
+
+    def form_invalid(self, form):
+        form.instance.user = self.request.user
+        return super(CreateCustomer).form_invalid(form)
 
 class CreateCustomer(CreateView):
     model = Customer
@@ -37,24 +45,23 @@ class CreateCustomer(CreateView):
 class CreateOrder(CreateView):
     model = Order
     fields = '__all__'
-    success_url = reverse_lazy('customer')
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(CreateOrder, self).form_valid(form)
     
-
 def customer_orders(request, customer_id):
-    orders = Order.objects.filter(customer_id=customer_id).count()
-    customer = Customer.objects.get(id=customer_id)
-    context = {'orders': orders,'customer':customer,}
+    customer = get_object_or_404(Customer, id=customer_id)
+    orders = Order.objects.filter(customer=customer)
+    order_count = orders.count()
+    context = {'customer': customer, 'orders': orders, 'order_count': order_count}
     return render(request, 'accounts/customer.html', context)
 
-
-def delete_order(order_id):
+def delete_order(request, order_id):
     try:
         order = Order.objects.get(id=order_id)
         order.delete()
-        return True
-    except ObjectDoesNotExist:
-        return False
+        return HttpResponse("Order deleted successfully.")
+    except Order.DoesNotExist:
+        return HttpResponse("Order does not exist.")

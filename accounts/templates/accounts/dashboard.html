@@ -42,14 +42,18 @@
                 </tr>
                 
                 {% for order in orders %}
-                    <tr>
-                        <td>{{ order.product }}</td>
-                        <td>{{ order.date_created }}</td>
-                        <td>{{ order.status }}</td>
-                        <td><a href="" class="btn btn-outline-info btn-sm">Update</a></td>
-                        <td><a href="" class="btn btn-outline-danger btn-sm">Delete</a></td>
-                    </tr>
-                {% endfor %}
+                <tr>
+                    <td>{{ order.product }}</td>
+                    <td>{{ order.date_created }}</td>
+                    <td>{{ order.status }}</td>
+                    <td><a href="" class="btn btn-outline-info btn-sm">Update</a></td>
+                    <td>
+                        <a href="{% url 'delete_order' order.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            
+            
             </table>
         </div>
     </div>

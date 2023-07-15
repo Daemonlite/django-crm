@@ -65,3 +65,11 @@ def delete_order(request, order_id):
         return HttpResponse("Order deleted successfully.")
     except Order.DoesNotExist:
         return HttpResponse("Order does not exist.")
+    
+def delete_customer(request, customer_id):
+    try:
+        customer = Customer.objects.get(id=customer_id)
+        customer.delete()
+        return HttpResponse("customer deleted successfully.")
+    except customer.DoesNotExist:
+        return HttpResponse("customer does not exist.")

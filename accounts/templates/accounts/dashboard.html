@@ -37,6 +37,8 @@
                     <th>Product</th>
                     <th>Date ordered</th>
                     <th>Status</th>
+                    <th>Customer</th>
+                    <th>Address</th>
                     <th>Remove</th>
                 </tr>
                 
@@ -45,6 +47,8 @@
                     <td>{{ order.product }}</td>
                     <td>{{ order.date_created }}</td>
                     <td>{{ order.status }}</td>
+                    <td>{{order.customer}}</td>
+                    <td>{{order.customer.address}}</td>
                     <td>
                         <a href="{% url 'delete_order' order.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
                     </td>

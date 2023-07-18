@@ -11,14 +11,7 @@
 <div class="form">
     <form method="POST" >
         {% csrf_token %}
-        <label>{{form.name.label}}</label>
-        {{form.name}}
-
-        <label>{{form.email.label}}</label>
-        {{form.email}}
-
-        <label>{{form.phone.label}}</label>
-        {{form.phone}}
+        {{form.as_p}}
         <br>
         <input style="margin-top:10px ;" class="btn btn-primary" type="submit" value="create-customer">
     </form>
